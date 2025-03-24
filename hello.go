@@ -1,13 +1,9 @@
 package main
 
-import "fmt"
+func concat(s1, s2 string) string {
+	return s1 + s2
+}
 
 func main() {
-	messageLen := 10
-
-	if maxMessageLen := 20; messageLen > maxMessageLen {
-		fmt.Println("Message not sent")
-	} else {
-		fmt.Println("Message sent")
-	}
+	println(concat("hello ", "world"))
 }
