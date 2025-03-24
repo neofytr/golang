@@ -19,6 +19,7 @@ func returnCarInfoToString(car struct {
 	return fmt.Sprintf("make: %s, model: %s, height: %dm\n", car.Make, car.Model, car.Height)
 }
 
+// Embedded Structs
 type dimension_t struct {
 	height int
 	widht  int
