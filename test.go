@@ -19,6 +19,20 @@ func returnCarInfoToString(car struct {
 	return fmt.Sprintf("make: %s, model: %s, height: %dm\n", car.Make, car.Model, car.Height)
 }
 
+type dimension_t struct {
+	height int
+	widht  int
+	length int
+}
+
+type car_t struct {
+	make        string
+	model       string
+	dimension_t // this embeds the dimension_t structure fields in the car_t struct
+	// so now, to access the height through a variable car of type car_t, we would
+	// simply do car.height
+}
+
 func main() {
 	raj := person_t{}
 	raj.name = "raj"
