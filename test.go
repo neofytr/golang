@@ -126,6 +126,7 @@ func getSome(volume volume_t) int {
 When we implement the copy function for a type
 that satisfies the copier_t interface, we
 can use different names for the parameters and return values as
+long as the function signature matches (signature includes the function name too)
 
 */
 type copier_t interface {
