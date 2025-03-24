@@ -170,4 +170,5 @@ func main() {
 	println(getVolume(human))
 
 	println(getSome(car))
+	println(getSome(human))
 }
