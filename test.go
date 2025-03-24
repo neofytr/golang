@@ -34,6 +34,15 @@ type car_t struct {
 	// simply do car.height
 }
 
+// Composite structs
+type human_t struct {
+	name   string
+	weight int
+	dimen  dimension_t // this is a composite struct
+	// to access height through a variable human of type human_t, we would
+	// do human.dimen.height
+}
+
 func main() {
 	raj := person_t{}
 	raj.name = "raj"
@@ -47,7 +56,20 @@ func main() {
 		Model  string
 		Height int
 	}{Make: "tesla", Model: "model B", Height: 3}
-
 	var carMsg string = returnCarInfoToString(myCar)
 	println(carMsg)
+
+	// composite structs
+	human := human_t{name: "raj", weight: 80, dimen: dimension_t{length: 20, height: 67, widht: 4}}
+
+	// embedded struct
+	// we still do a similar thing as composite structs but we initialize with the
+	// type name instead of the name of the variable of the type as in composite structs
+	car := car_t{make: "tesla", model: "model b", dimension_t: dimension_t{length: 20, height: 40, widht: 4}}
+
+	println(human.name)
+
+	// the real difference comes will accessing the fields
+	println(human.dimen.height)
+	println(car.height)
 }
