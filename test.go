@@ -73,6 +73,26 @@ func getVolume(volume volume_t) int {
 	return volume.returnVolume()
 }
 
+func getSomeInfo(volume volume_t) int {
+
+	// type assertions
+	// since we don't know what types are being passed in the interface
+	// we use type assertions
+
+	var retVal int
+	car, ok := volume.(car_t)
+	if ok {
+		retVal = car.height
+	}
+
+	human, ok := volume.(human_t)
+	if ok {
+		retVal = human.dimen.height
+	}
+
+	return retVal
+}
+
 func main() {
 	raj := person_t{}
 	raj.name = "raj"
