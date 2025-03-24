@@ -64,6 +64,9 @@ type volume_t interface {
 // the empty interface, interface{}, is always implemented by every type
 // because it has no requirements
 
+// In Go, interface{} is an empty interface, meaning it can hold values of any type.
+// Since all types implement at least the empty interface, it acts as a universal container.
+
 // a single type can implement multiple interfaces since implementing an
 // interface is an implicit thing
 
@@ -79,6 +82,16 @@ func getSomeInfo(volume volume_t) int {
 	// since we don't know what types are being passed in the interface
 	// we use type assertions
 
+	/*
+
+		Type assertions in Go allow you to retrieve the concrete value from an interface{} type.
+		This is useful when you have a value stored as an interface{} and need to
+		convert it back to its original type.
+
+		We can also use some custom interface type other than interface{} like volume_t
+
+	*/
+
 	var retVal int
 	car, ok := volume.(car_t)
 	if ok {
@@ -91,6 +104,33 @@ func getSomeInfo(volume volume_t) int {
 	}
 
 	return retVal
+}
+
+// implements the same functionality as above but uses type switches
+func getSome(volume volume_t) int {
+	var retVal int
+
+	switch v := volume.(type) {
+	case car_t:
+		retVal = v.height
+	case human_t:
+		retVal = v.dimen.height
+	}
+
+	return retVal
+}
+
+// an interface with methods that have names for their values and return values (for clarity only)
+/*
+
+When we implement the copy function for a type
+that satisfies the copier_t interface, we
+can use different names for the parameters and return values as
+long as the function signature matches (signature includes the function name too)
+
+*/
+type copier_t interface {
+	copy(destinationFile, sourceFile string) (bytesCopied int)
 }
 
 func main() {
