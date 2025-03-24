@@ -171,4 +171,7 @@ func main() {
 
 	println(getSome(car))
 	println(getSome(human))
+
+	println(getSomeInfo(car))
+	println(getSomeInfo(human))
 }
