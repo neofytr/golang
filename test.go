@@ -61,6 +61,12 @@ type volume_t interface {
 	returnVolume() int
 }
 
+// the empty interface, interface{}, is always implemented by every type
+// because it has no requirements
+
+// a single type can implement multiple interfaces since implementing an
+// interface is an implicit thing
+
 // we can pass the structs of any type that implements
 // the volume interface in this function
 func getVolume(volume volume_t) int {
