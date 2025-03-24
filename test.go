@@ -7,7 +7,11 @@ type person_t struct {
 	height float64
 }
 
+func test(info person_t) string {
+	return fmt.Sprintf("name: %s, height: %.1f", info.name, info.height)
+}
+
 func main() {
-	p := person_t{name: "Alice", height: 5.7}
-	fmt.Printf("name: %s, height: %.1f\n", p.name, p.height)
+	var msg string = test(person_t{name: "raj", height: 4.5})
+	println(msg)
 }
