@@ -45,6 +45,8 @@ type human_t struct {
 
 // method on the type human_t
 func (human human_t) returnVolume() int {
+	// human contains the human_t structure's copy on which
+	// the method returnVolume() was called
 	return human.dimen.height * human.dimen.length * human.dimen.widht
 }
 
