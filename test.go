@@ -16,7 +16,7 @@ func returnCarInfoToString(car struct {
 	Model  string
 	Height int
 }) string {
-	return fmt.Sprintf("make: %s, model: %s, height: %dm\n", car.Make, car.Model, car.Height)
+	return fmt.Sprintf("make: %s, model: %s, height: %d m", car.Make, car.Model, car.Height)
 }
 
 // Embedded Structs
@@ -41,6 +41,16 @@ type human_t struct {
 	dimen  dimension_t // this is a composite struct
 	// to access height through a variable human of type human_t, we would
 	// do human.dimen.height
+}
+
+// method on the type human_t
+func (human human_t) returnVolume() int {
+	return human.dimen.height * human.dimen.length * human.dimen.widht
+}
+
+// method on the type car_t
+func (car car_t) returnVolume() int {
+	return car.height * car.widht * car.length
 }
 
 func main() {
@@ -72,4 +82,7 @@ func main() {
 	// the real difference comes will accessing the fields
 	println(human.dimen.height)
 	println(car.height)
+
+	println(car.returnVolume())
+	println(human.returnVolume())
 }
