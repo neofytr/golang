@@ -3,10 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	var smsSendingLimit int = 0
-	var costPerSMS float64 = 0.0
-	var hasPermission bool = false
-	var username string = "raj"
+	congrats := "happy birthday!"
 
-	fmt.Printf("%d %f %t %s\n", smsSendingLimit, costPerSMS, hasPermission, username)
+	fmt.Printf("%s\n", congrats)
 }
