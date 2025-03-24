@@ -55,6 +55,18 @@ func (car car_t) returnVolume() int {
 	return car.height * car.widht * car.length
 }
 
+// both car_t and human_t implement this interface(implicitly)
+// since they both implement the functions required by the volume interface
+type volume_t interface {
+	returnVolume() int
+}
+
+// we can pass the structs of any type that implements
+// the volume interface in this function
+func getVolume(volume volume_t) int {
+	return volume.returnVolume()
+}
+
 func main() {
 	raj := person_t{}
 	raj.name = "raj"
@@ -87,4 +99,7 @@ func main() {
 
 	println(car.returnVolume())
 	println(human.returnVolume())
+
+	println(getVolume(car))
+	println(getVolume(human))
 }
