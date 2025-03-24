@@ -124,7 +124,7 @@ func getSome(volume volume_t) int {
 /*
 
 When we implement the copy function for a type
-
+that satisfies the copier_t interface, we
 
 */
 type copier_t interface {
