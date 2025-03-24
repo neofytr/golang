@@ -3,6 +3,6 @@ package main
 import "fmt"
 
 func main() {
-	penniesPerText := 2.0
-	fmt.Printf("%T\n", penniesPerText)
+	averageOpenRate, displayMessage := .23, "is the average open rate of your message"
+	fmt.Println(averageOpenRate, displayMessage)
 }
