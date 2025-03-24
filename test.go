@@ -168,4 +168,6 @@ func main() {
 
 	println(getVolume(car))
 	println(getVolume(human))
+
+	println(getSome(car))
 }
