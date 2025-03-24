@@ -3,6 +3,6 @@ package main
 import "fmt"
 
 func main() {
-	congrats := "happy birthday!"
-	fmt.Printf("%s\n", congrats)
+	penniesPerText := 2.0
+	fmt.Printf("%T\n", penniesPerText)
 }
