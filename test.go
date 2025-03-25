@@ -231,6 +231,43 @@ func createMatrix(rows, cols int) (matrix [][]int) {
 	return matrix
 }
 
+/*
+
+A variadic function in Go is a function that accepts a variable number of arguments
+of a specific type
+It is defined using ... before the type in the function parameter list
+
+*/
+
+func sums(nums ...int) int {
+	// nums can now just be accessed as []int which contain all the arguments passed to the function
+	total := 0
+	for index := 0; index < len(nums); index++ {
+		total += nums[index]
+	}
+
+	return total
+}
+
+/*
+
+Go does not have a direct equivalent to the "spread operator" like JS or Python (*args)
+However, the ... notation can be used in two ways:
+
+1. Defining variadic functions; as shown before
+2. Expanding a slice into arguments: When calling a variadic function, a slice can be
+expanded into individual arguments (in the order in which they are present in the slice)
+using ...
+
+For example:
+
+args := []int{1, 2, 3, 4, 5}
+sum := sums(args...)
+
+The call is equivalent to sums(1, 2, 3, 4, 5)
+
+*/
+
 func main() {
 	raj := person_t{}
 	raj.name = "raj"
