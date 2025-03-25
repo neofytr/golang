@@ -210,6 +210,10 @@ func fizzbuzz() {
 	}
 }
 
+func getMessages() [3]string {
+	return [3]string{"hello", "world", "kaise ho"}
+}
+
 func main() {
 	raj := person_t{}
 	raj.name = "raj"
@@ -292,4 +296,9 @@ func main() {
 	// whenever and wherever in go we don't initialize a variable, it takes on it's
 	// default zero value
 	// for example, for int, the zero value is 0, for string, it is ""
+
+	// this is an array of three integers
+	var arr [3]int
+	arr = [3]int{1, 2, 3}
+	arr[2] = 5
 }
