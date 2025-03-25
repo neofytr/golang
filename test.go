@@ -214,6 +214,13 @@ func getMessages() [3]string {
 	return [3]string{"hello", "world", "kaise ho"}
 }
 
+// the array passed to this function is passed by value and not by reference
+func val(arr [3]int) {
+	arr[0] = 10
+	arr[1] = 11
+	fmt.Println(arr[0], arr[1])
+}
+
 func main() {
 	raj := person_t{}
 	raj.name = "raj"
@@ -300,5 +307,8 @@ func main() {
 	// this is an array of three integers
 	var arr [3]int
 	arr = [3]int{1, 2, 3}
-	arr[2] = 5
+
+	// the array is passed by value
+	val(arr)
+	fmt.Println(arr[0], arr[1])
 }
