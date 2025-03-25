@@ -198,12 +198,12 @@ func test(divisor, dividend int) (quotient, remainder int, err error) {
 
 func fizzbuzz() {
 	for index := 1; index <= 100; index++ {
-		if index%3 == 0 && index%15 != 0 {
-			fmt.Println("fizz")
-		} else if index%5 == 0 && index%15 != 0 {
-			fmt.Println("buzz")
-		} else if index%15 == 0 {
+		if index%15 == 0 {
 			fmt.Println("fizzbuzz")
+		} else if index%3 == 0 {
+			fmt.Println("fizz")
+		} else if index%5 == 0 {
+			fmt.Println("buzz")
 		} else {
 			fmt.Println(index)
 		}
