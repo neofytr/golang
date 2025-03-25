@@ -221,6 +221,16 @@ func val(arr [3]int) {
 	fmt.Println(arr[0], arr[1])
 }
 
+func createMatrix(rows, cols int) (matrix [][]int) {
+	matrix = make([][]int, rows)
+	for row := 0; row < rows; row++ {
+		for col := 0; col < cols; col++ {
+			matrix[row] = append(matrix[row], row*col)
+		}
+	}
+	return matrix
+}
+
 func main() {
 	raj := person_t{}
 	raj.name = "raj"
@@ -499,4 +509,12 @@ func main() {
 
 	srcSlice := []int{1, 2, 3}
 	fmt.Println(len(srcSlice), cap(srcSlice))
+
+	matrix := createMatrix(10, 10)
+	for row := 0; row < 10; row++ {
+		for col := 0; col < 10; col++ {
+			fmt.Printf("%d ", matrix[row][col])
+		}
+		fmt.Printf("\n")
+	}
 }
