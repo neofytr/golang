@@ -337,6 +337,9 @@ func main() {
 			2. A length (number of elements)
 			3. A capacity (number of elements in the underlying array starting from the pointer)
 
+		A slice type is denoted [](type)
+		For eg, [](int), [](float)
+
 		Slices reference an underlying array, so modifying a slice modifies the original array
 		Slices have length (num of accessible elements) and capacity (max elements available)
 		Slices can grow dynamically using append()
@@ -387,4 +390,91 @@ func main() {
 	fmt.Println("Array after second append:", array) // [1 2 3 4 12] (unchanged)
 
 	// The new slice now has its own memory, independent of `array`.
+
+	/*
+		CREATING A SLICE USING make()
+
+		- The `make()` function is used to create a slice with a specific length and capacity.
+		- The syntax is: `make([]Type, length, capacity)`
+		- The `length` defines how many elements are initialized.
+		- The `capacity` defines the total size of the underlying array backing the slice.
+		- If the `capacity` argument is omitted, it defaults to the `length`, meaning the slice has
+		  no extra room for appending beyond its initial size.
+
+		Below, we create a slice with:
+		- Length: 5
+		- Capacity: 10
+		- The slice overlays only on the first 5 indexes of the underlying array.
+		- The underlying array is allocated with size 10 and zero-initialized.
+		- The type of the underlying array is `[10]int`, while the slice itself is `[]int`.
+
+		NOTE:
+		- The underlying array exists separately, and the slice is just a view into it.
+		- The slice's capacity dictates how much can be appended before a new array needs to be allocated.
+	*/
+
+	newSlice := make([]int, 5, 10)
+
+	// The initial slice state:
+	fmt.Println("newSlice:", newSlice)      // Output: [0 0 0 0 0]
+	fmt.Println("Length:", len(newSlice))   // Output: 5
+	fmt.Println("Capacity:", cap(newSlice)) // Output: 10
+
+	/*
+		APPENDING ELEMENTS TO A SLICE
+
+		- When elements are appended using `append(slice, element)`, Go determines whether there is
+		  enough capacity in the existing underlying array.
+		- If there is available capacity:
+		  - The new element is added to the underlying array without changing its reference.
+		- If capacity is exceeded:
+		  - A **new, larger underlying array** is allocated.
+		  - All elements from the old array are copied into the new array.
+		  - The new element is added to the new array.
+		  - The `append()` function **returns a new slice** that references this new array.
+
+		IMPORTANCE OF STORING THE RETURNED SLICE:
+
+		- Since `append()` can return a slice with a **different** underlying array, we must always
+		  assign the result of `append()` back to our original slice variable.
+		- If we fail to do so, we might continue using the old slice, which still references the old array.
+	*/
+
+	newSlice = append(newSlice, 6)        // Appending within capacity
+	newSlice = append(newSlice, 7)        // Still within capacity
+	newSlice = append(newSlice, 8, 9, 10) // Still within capacity
+	newSlice = append(newSlice, 11)       // This exceeds capacity! A new array is allocated.
+
+	/*
+		At this point:
+		- The first few `append()` calls used the original underlying array.
+		- The final `append(11)` exceeded the capacity of 10.
+		- Go created a **new** underlying array (size typically doubled, but depends on the runtime).
+		- The old underlying array remains in memory but is no longer referenced by `newSlice`.
+		- The new slice `newSlice` references the newly allocated array.
+	*/
+
+	fmt.Println("newSlice after appends:", newSlice)
+	fmt.Println("Length after appends:", len(newSlice))
+	fmt.Println("Capacity after appends:", cap(newSlice)) // Likely increased (usually doubled)
+
+	/*
+		COPYING SLICES
+
+		- If we need to **copy** elements from one slice to another while ensuring they
+		  do not share the same underlying array, we use `copy()`.
+		- The syntax is: `copy(destination, source)`
+		- This copies the **minimum of** `len(destination)` and `len(source)` elements.
+		- This is useful when we need to create a completely **independent** slice.
+
+		Below:
+		- We create a new slice (`destSlice`) with the same length as `newSlice`.
+		- `copy(destSlice, newSlice)` copies the values into `destSlice`.
+		- `destSlice` is now independent and modifications to it do not affect `newSlice`.
+	*/
+
+	destSlice := make([]int, len(newSlice)) // New slice with the same length
+	copy(destSlice, newSlice)               // Copy elements
+
+	fmt.Println("Copied slice:", destSlice) // Independent copy of `newSlice`
 }
