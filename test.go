@@ -581,4 +581,6 @@ func main() {
 	for index, _ := range mySlice {
 		_ = index
 	}
+
+	// we can't ignore both
 }
