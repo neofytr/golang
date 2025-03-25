@@ -477,4 +477,26 @@ func main() {
 	copy(destSlice, newSlice)               // Copy elements
 
 	fmt.Println("Copied slice:", destSlice) // Independent copy of `newSlice`
+
+	// a nil slice is a slice that has not been initialized. it's value is nil, and both
+	// it's length and capacity are 0
+	// it doesn't have an underlying array
+	// it behaves like an empty slice in loops and append operations
+	// appending an element to a nil slice works fine; Go automatically allocates an underlying array
+	// once appended, it's value is no longer nil
+
+	var nilSlice [](int) // no initialized, so it's nil
+	_ = nilSlice
+
+	// an empty slice is a valid slice that references an existing (but empty) underlying array
+	// the slice is not nil
+	// it has length 0 and capacity 0, but it does have an underlying array (even though it's empty)
+	// it behaves like a normal slice and supoorts appends
+	// unlike a nil slice, it explicitly exists in memory
+
+	emptySlice := []int{}
+	_ = emptySlice
+
+	srcSlice := []int{1, 2, 3}
+	fmt.Println(len(srcSlice), cap(srcSlice))
 }
