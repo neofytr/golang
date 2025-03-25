@@ -133,6 +133,45 @@ type copier_t interface {
 	copy(destinationFile, sourceFile string) (bytesCopied int)
 }
 
+/*
+
+In Go, error is a built-in interface that represents an error condition.
+The error interface is defined as:
+
+type error interface {
+	Error() string
+}
+
+This means that any type that implements the Error() method (which returns a string)
+satisfies an error interface and can be used as an error
+
+*/
+
+type user_t struct {
+	username   string
+	password   string
+	userActive bool
+	activeTime int
+}
+
+type error_t struct {
+	code int
+	msg  string
+}
+
+// make error_t implement the error interface by implementing the Error() function on it
+func (err error_t) Error() string {
+	return fmt.Sprintf("code: %d, msg: %s", err.code, err.msg)
+}
+
+func getActiveTime(user user_t) (int, error) {
+	if user.userActive {
+		return user.activeTime, nil
+	} else {
+		return 0, error_t{code: 404, msg: fmt.Sprintf("user %s not active", user.username)}
+	}
+}
+
 func main() {
 	raj := person_t{}
 	raj.name = "raj"
@@ -174,4 +213,13 @@ func main() {
 
 	println(getSomeInfo(car))
 	println(getSomeInfo(human))
+
+	user := user_t{username: "raj", password: "rishika", userActive: false, activeTime: 0}
+
+	activeTime, err := getActiveTime(user)
+	if err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Printf("user %s active time: %d\n", user.username, activeTime)
+	}
 }
