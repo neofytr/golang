@@ -554,4 +554,21 @@ func main() {
 		}
 		fmt.Printf("\n")
 	}
+
+	/*
+
+		In Go, the range keyword is used to iterate over slices, arrays, maps, and channels.
+		When iterating over a slice with range, it returns both the index and value of each element
+
+	*/
+
+	mySlice := []int{10, 20, 30, 40, 50, 60}
+
+	// Iterate over mySlice using range.
+	// 'index' represents the current position in the slice.
+	// 'val' holds the corresponding value at that index.
+	// The loop automatically iterates from index 0 to len(mySlice) - 1.
+	for index, val := range mySlice {
+		fmt.Printf("Element at index %d: Value = %d\n", index, val)
+	}
 }
