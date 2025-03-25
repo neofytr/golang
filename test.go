@@ -288,4 +288,8 @@ func main() {
 
 	// the break keyword stops the current iteration of the loop and immediately
 	// exits the loop
+
+	// whenever and wherever in go we don't initialize a variable, it takes on it's
+	// default zero value
+	// for example, for int, the zero value is 0, for string, it is ""
 }
