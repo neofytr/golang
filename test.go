@@ -282,4 +282,10 @@ func main() {
 	}
 
 	fizzbuzz()
+
+	// the continue keyword stops the current iteration of a loop and continues
+	// to the next iteration (if there is any)
+
+	// the break keyword stops the current iteration of the loop and immediately
+	// exits the loop
 }
