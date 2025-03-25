@@ -254,4 +254,8 @@ func main() {
 		fmt.Printf("quotient: %d, remainder: %d\n", quotient, remainder)
 	}
 
+	// a for loop in GO
+	for index := 0; index < 10; index++ {
+		fmt.Printf("cost for index %d is %0.3f\n", index, 0.01*float64(index))
+	}
 }
