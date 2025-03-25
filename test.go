@@ -571,4 +571,14 @@ func main() {
 	for index, val := range mySlice {
 		fmt.Printf("Element at index %d: Value = %d\n", index, val)
 	}
+
+	// to ignore the index
+	for _, val := range mySlice {
+		_ = val
+	}
+
+	// to ignore the value
+	for index, _ := range mySlice {
+		_ = index
+	}
 }
