@@ -264,6 +264,7 @@ func main() {
 	index := 0
 	for index < 10 {
 		fmt.Printf("cost for index %d is %0.3f\n", index, 0.01*float64(index))
+		index++
 	}
 
 }
