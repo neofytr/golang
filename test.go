@@ -311,4 +311,37 @@ func main() {
 	// the array is passed by value
 	val(arr)
 	fmt.Println(arr[0], arr[1])
+
+	/*
+
+		An array in Go is a fixed-size collection of elements of the same type
+		Arrays are value types: assigning an array to another copies all elements
+		The size of an array is part of it's type
+
+	*/
+
+	var array [5]int              // declaring a variable that will hold an array of type [5]int
+	array = [5]int{1, 2, 3, 4, 5} // assigning the array variable an array of type [5]int
+
+	var arrayCopy [5]int
+	arrayCopy = array // this will create a copy of the array stored inside the variable array and assign the copy
+	// to the variable arrayCopy
+
+	_ = arrayCopy // to avoid compiler warning
+
+	/*
+
+		A slice is a dynamically-sized, flexible view into an array
+		A slice consists of:
+			1. A pointer to an array
+			2. A length (number of elements)
+			3. A capacity (number of elements in the underlying array starting from the pointer)
+
+		Slices reference an underlying array, so modifying a slice modifies the original array
+		Slices have length (num of accessible elements) and capacity (max elements available)
+		Slices can grow dynamically using append()
+	*/
+
+	slice := array[1:4] // slice from index 1 to index 3 of the array variable array (both inclusive)
+
 }
