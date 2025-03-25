@@ -147,6 +147,13 @@ satisfies an error interface and can be used as an error
 
 */
 
+/*
+
+In Go, when you pass an error interface to the fmt.Print functions, it automatically
+calls the Error() method of the error interface behind the scenes
+
+*/
+
 type user_t struct {
 	username   string
 	password   string
@@ -218,7 +225,7 @@ func main() {
 
 	activeTime, err := getActiveTime(user)
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Println(err)
 	} else {
 		fmt.Printf("user %s active time: %d\n", user.username, activeTime)
 	}
