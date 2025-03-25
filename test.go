@@ -344,4 +344,47 @@ func main() {
 
 	slice := array[1:4] // slice from index 1 to index 3 of the array variable array (both inclusive)
 
+	fmt.Println(slice)      // [2, 3, 4]
+	fmt.Println(len(slice)) // 3 (length of slice)
+	fmt.Println(cap(slice)) // 4 (capacity from array[1] (start of the slice) to array[4] (end of the underlying array))
+
+	slice[0] = 20 // modifies array[1] too
+	fmt.Println(array)
+
+	/*
+
+			append(slice, elements...) adds elements to a slice and returns the updated slice
+			If capacity allows, the elements are added to the same underlying array
+			If capacity is exceeded, Go allocates a new array, copies elements, and uses that. So, its
+			important to store the returned slice somewhere, often in the previous variable itself
+
+			Since `append()` may allocate a **new array**, always assign its result back: `slice = append(slice, newElement)`
+		    If we don't, the new slice will be lost, and modifications may not persist.
+
+	*/
+
+	// Append an element to the slice
+	slice = append(slice, 12)
+	// Since the slice's current length (4) is within the underlying array's capacity (5),
+	// the value `12` is placed in array[4], modifying the original array.
+	// The slice now looks like: [1, 2, 3, 4, 12]
+	// and the underlying `array` is updated: [1, 2, 3, 4, 12]
+
+	fmt.Println("Array after first append:", array) // [1 2 3 4 12]
+	fmt.Println("Slice after first append:", slice) // [1 2 3 4 12]
+
+	// Append another element to the slice
+	slice = append(slice, 13)
+	// This time, the slice's length would increase beyond the array's capacity (5),
+	// meaning Go can no longer store this slice in `array`.
+	// Go automatically creates a **new underlying array**, copies the elements from the
+	// previous slice, and adds `13` at the end.
+	// This new array is completely separate from `array`.
+
+	fmt.Println("Slice after second append:", slice) // [1 2 3 4 12 13]
+
+	// The original `array` remains unchanged beyond its capacity:
+	fmt.Println("Array after second append:", array) // [1 2 3 4 12] (unchanged)
+
+	// The new slice now has its own memory, independent of `array`.
 }
