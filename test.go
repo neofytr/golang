@@ -197,7 +197,7 @@ func test(divisor, dividend int) (quotient, remainder int, err error) {
 }
 
 func main() {
-	raj := perso_t{}
+	raj := person_t{}
 	raj.name = "raj"
 	raj.height = 4.5
 	var msg string = returnInfoString(raj)
