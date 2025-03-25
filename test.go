@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type person_t struct {
 	name   string
@@ -179,8 +182,22 @@ func getActiveTime(user user_t) (int, error) {
 	}
 }
 
+// test performs integer division and returns the quotient, remainder, and an error if the dividend is zero.
+func test(divisor, dividend int) (quotient, remainder int, err error) {
+	if dividend == 0 {
+		// errors.New("Error: Cannot divide by zero!") internally does the following:
+		// - It creates a new instance of an unexported struct called `errorString` (defined in the `errors` package).
+		// - The struct `errorString` has a single field: `s string`, which stores the error message.
+		// - The struct implements the `Error() string` method, making it compatible with the `error` interface.
+		// - Finally, errors.New() returns a pointer to this struct, allowing it to be used as an error.
+		return 0, 0, errors.New("Error: Cannot divide by zero!")
+	}
+
+	return divisor / dividend, divisor % dividend, nil
+}
+
 func main() {
-	raj := person_t{}
+	raj := perso_t{}
 	raj.name = "raj"
 	raj.height = 4.5
 	var msg string = returnInfoString(raj)
@@ -229,4 +246,12 @@ func main() {
 	} else {
 		fmt.Printf("user %s active time: %d\n", user.username, activeTime)
 	}
+
+	quotient, remainder, err := test(10, 0)
+	if err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Printf("quotient: %d, remainder: %d\n", quotient, remainder)
+	}
+
 }
