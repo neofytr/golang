@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"maps"
 )
 
 type person_t struct {
@@ -656,4 +657,13 @@ func main() {
 	for key, value := range personAge {
 		copyPersonAge[key] = value
 	}
+	// or better
+	maps.Copy(copyPersonAge, personAge)
+
+	/*
+
+		Maps in Go are unordered, iteration order is random
+		Avoid modifying a map while iterating over it
+
+	*/
 }
