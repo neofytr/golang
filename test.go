@@ -700,4 +700,15 @@ func main() {
 		Structs containing only comparable fields can be used as keys into a map
 
 	*/
+
+	type name_t struct {
+		firstName string
+		lastName  string
+	}
+
+	nameWorthMap := make(map[name_t]int)
+	nameWorthMap[name_t{firstName: "raj", lastName: "shukla"}] = 10
+	nameWorthMap[name_t{"rishika", "rajoriya"}] = 100
+
+	fmt.Println(nameWorthMap)
 }
