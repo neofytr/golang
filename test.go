@@ -688,4 +688,16 @@ func main() {
 
 	changeMap(personAge)
 	fmt.Println(personAge)
+
+	/*
+
+		In Go, keys in a map must be of a comparable type. This means types that
+		support the ==, != operations.
+
+		Go does not allow types that are not comparable, including slices, maps, functions, and
+		structs the contain non-comparable fields
+
+		Structs containing only comparable fields can be used as keys into a map
+
+	*/
 }
