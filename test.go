@@ -711,4 +711,49 @@ func main() {
 	nameWorthMap[name_t{"rishika", "rajoriya"}] = 100
 
 	fmt.Println(nameWorthMap)
+
+	/*
+
+		Like slices, maps holds references to the underlying data structure.
+		If you pass a map to a function that changes the contents of the map, the
+		changes will be visible in the caller.
+
+	*/
+
+	// maps can be constructed using the usual composite literal syntax
+	// with colon-separated key-value pairs
+	var nameWeight = map[string]int{
+		"raj":     80,
+		"rishika": 60,
+	}
+	_ = nameWeight
+
+	// an attempt to fetch a map value with a key that is not present in the map
+	// will return the zero value for the type of entries in the map
+	attended := map[string]bool{
+		"raj":     true,
+		"rishika": true,
+		"aryaman": true,
+	}
+
+	if !attended["zinnia"] { // will be true if person is not in the map
+		fmt.Println("zinnia was not at the meeting")
+	}
+
+	fmt.Println(aggregate(10, 9, 8, add))  // will print 27
+	fmt.Println(aggregate(10, 9, 8, mult)) // will print 720
+}
+
+func add(a, b int) int {
+	return a + b
+}
+
+func mult(a, b int) int {
+	return a * b
+}
+
+// a function that takes another function as its parameter
+func aggregate(a, b, c int, arithmetic func(int, int) int) int {
+	val := arithmetic(a, b)
+	return arithmetic(val, c)
 }
