@@ -583,4 +583,21 @@ func main() {
 	}
 
 	// we can't ignore both
+
+	/*
+
+		A map in Go is a built-in data type that represents a hash table or dictionary. It
+		stores key-value pairs, where each key is unique and maps to a specific value. Maps
+		provide fast lookups, additions, and deletions due to their underlying hash table
+		implementation.
+
+		Maps are declared using the map keyword
+
+		var myMap map[keyType]valueType
+
+		keyType defines the type of keys (must be comparable types like string, int, etc)
+		valueType defines the type of values
+
+	*/
+
 }
