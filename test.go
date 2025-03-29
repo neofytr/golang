@@ -600,4 +600,37 @@ func main() {
 
 	*/
 
+	// there are multiple ways to declare and initialize a map
+
+	myMap := make(map[string]int) // create an empty map with string keys and int values
+	_ = myMap
+
+	// declaring and initializing a map with predefined key-value pairs
+	personAge := map[string]int{
+		"raj":     19,
+		"rishika": 17,
+	}
+	_ = personAge
+
+	// declaring a map without initializing it leads to a nil map
+	var mySecondMap map[string]int // nil map (cannot be used until initialized)
+	// to use it, initialize it, with make for ex,
+	mySecondMap = make(map[string]int)
+	_ = mySecondMap
+
+	// we can add key-value pairs (to non nil maps) and access value using their keys (again in non-nil maps)
+	personAge["pranav"] = 20
+	personAge["prince"] = 18
+	fmt.Println(personAge["raj"]) // prints 19
+
+	// to check if a key exists, use the comma ok idiom:
+	age, exists := personAge["ritesh"]
+	if exists {
+		fmt.Println("Ritesh's age:", age)
+	} else {
+		fmt.Println("We don't know Ritesh's age")
+	}
+	// if the key doesn't exist, age will be the zero value of the value type (0 for int)
+
+	// we can remove a key-value pair using delete() function
 }
