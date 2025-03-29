@@ -269,6 +269,11 @@ The call is equivalent to sums(1, 2, 3, 4, 5)
 
 */
 
+func changeMap(personAgeMap map[string]int) {
+	personAgeMap["yug"] = 18
+	personAgeMap["aditya"] = 19
+}
+
 func main() {
 	raj := person_t{}
 	raj.name = "raj"
@@ -672,4 +677,15 @@ func main() {
 		Avoid modifying a map while iterating over it
 
 	*/
+
+	/*
+
+		Like slices, maps are also passed by reference into functions. This means
+		that when a map is passed into a function we write, we can make changes
+		to the original, we don't have a copyu
+
+	*/
+
+	changeMap(personAge)
+	fmt.Println(personAge)
 }
