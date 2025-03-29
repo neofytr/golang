@@ -646,4 +646,14 @@ func main() {
 	for key := range personAge {
 		fmt.Println(key)
 	}
+
+	// maps are reference types, meaning they share underlying data when assigned
+	copyPersonAge := personAge // both point to the same underlying map
+	_ = copyPersonAge
+
+	// to create a true copy, manually copy elements
+	copyPersonAge = make(map[string]int)
+	for key, value := range personAge {
+		copyPersonAge[key] = value
+	}
 }
