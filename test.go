@@ -660,6 +660,10 @@ func main() {
 	// or better
 	maps.Copy(copyPersonAge, personAge)
 
+	// the len function on a map returns the number of key-value pairs the map contains; 0 if the
+	// map is nil
+	fmt.Println(len(personAge))
+
 	/*
 
 		Maps in Go are unordered, iteration order is random
