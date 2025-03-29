@@ -633,4 +633,7 @@ func main() {
 	// if the key doesn't exist, age will be the zero value of the value type (0 for int)
 
 	// we can remove a key-value pair using delete() function
+	// deleting a non-existent key does nothing
+	delete(personAge, "raj")
+	fmt.Println(personAge)
 }
