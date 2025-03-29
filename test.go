@@ -624,10 +624,12 @@ func main() {
 	personAge["prince"] = 18
 	fmt.Println(personAge["raj"]) // prints 19
 
-	// to check if a key exists, use the comma ok idiom:
-	age, exists := personAge["ritesh"]
+	// to check if a key exists, use the comma ok idiom
+	// exists is true if the key exists, false otherwise
+	// if key is not in the map, then elem is the zero value for the map's value type
+	elem, exists := personAge["ritesh"]
 	if exists {
-		fmt.Println("Ritesh's age:", age)
+		fmt.Println("Ritesh's age:", elem)
 	} else {
 		fmt.Println("We don't know Ritesh's age")
 	}
