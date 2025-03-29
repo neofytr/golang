@@ -636,4 +636,14 @@ func main() {
 	// deleting a non-existent key does nothing
 	delete(personAge, "raj")
 	fmt.Println(personAge)
+
+	// we can use a for range loop to iterate over key-value pairs
+	for key, value := range personAge {
+		fmt.Println("key:", key, "value:", value)
+	}
+
+	// we can also iterate over keys only
+	for key := range personAge {
+		fmt.Println(key)
+	}
 }
