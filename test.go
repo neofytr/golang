@@ -742,6 +742,15 @@ func main() {
 
 	fmt.Println(aggregate(10, 9, 8, add))  // will print 27
 	fmt.Println(aggregate(10, 9, 8, mult)) // will print 720
+
+	// Go supports first-class functions, meaning functions can be:
+	// assigned to variables
+	// passed as arguments
+	// returned from other functions
+
+	// a higher order function is a function that
+	// takes another function as an argument, or
+	// returns a function
 }
 
 func add(a, b int) int {
