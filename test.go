@@ -751,6 +751,12 @@ func main() {
 	// a higher order function is a function that
 	// takes another function as an argument, or
 	// returns a function
+
+	squareFunc := selfMath(mult)
+	fmt.Println(squareFunc(12))
+
+	doubleFunc := selfMath(add)
+	fmt.Println(doubleFunc(12))
 }
 
 func add(a, b int) int {
@@ -765,4 +771,14 @@ func mult(a, b int) int {
 func aggregate(a, b, c int, arithmetic func(int, int) int) int {
 	val := arithmetic(a, b)
 	return arithmetic(val, c)
+}
+
+/*
+Currying is a technique where a function that takes multiple arguments
+is transformed into a sequence of functions, each taking a single argument
+*/
+func selfMath(mathFunc func(int, int) int) func(int) int {
+	return func(x int) int {
+		return mathFunc(x, x)
+	}
 }
