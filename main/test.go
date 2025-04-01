@@ -810,6 +810,8 @@ func main() {
 	var teddy teddy_t = teddy_t{"white", 100}
 	teddy.setColor("blue")
 	fmt.Println(teddy.color)
+
+	fmt.Println(getSquare(16))
 }
 
 type teddy_t struct {
