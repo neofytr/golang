@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	mathutil "first/mathUtil"
 	"fmt"
 	"maps"
 	"os"
@@ -811,7 +812,7 @@ func main() {
 	teddy.setColor("blue")
 	fmt.Println(teddy.color)
 
-	fmt.Println(getSquare(16))
+	fmt.Println(mathutil.GetDouble(89))
 }
 
 type teddy_t struct {
