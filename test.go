@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"maps"
+	"os"
+	"sync"
 )
 
 type person_t struct {
@@ -781,4 +783,50 @@ func selfMath(mathFunc func(int, int) int) func(int) int {
 	return func(x int) int {
 		return mathFunc(x, x)
 	}
+}
+
+var mu sync.Mutex
+
+func processFile(filename string) (success bool) {
+	// the defer keyword in Go is used to postpone the execution of a function
+	// call just before the surrounding function returns.
+
+	// when a function call is deferred:
+
+	// the function itself does not execute immediately
+
+	// it's arguments are evaluated immediately, but the execution of the
+	// function body is delayed
+
+	// deferred functions execute in LIFO (Last-In-First-Out) order, meaning the
+	// last deferred function runs first
+
+	// arguments of the deferred function are evaluated at the time of defer, not
+	// when the function actually executes
+
+	// when multiple defer statements exist, they execute in reverse order of their
+	// declaration
+
+	// when a function panics, deferred calls still execute before the program crashes
+	// if a function returns named return value, deferred functions can modify it
+
+	defer func() {
+		if !success {
+			fmt.Println("Processing Failed, Cleaning Up")
+		}
+	}()
+
+	file, err := os.Open(filename)
+	if err != nil {
+		fmt.Println("Error Opening File: ", err)
+		return false
+	}
+
+	defer func() {
+		fmt.Println("Closing File:", filename)
+		file.Close()
+	}()
+
+	// lock a mutex for safe access to shared resources
+	
 }
