@@ -782,6 +782,11 @@ func main() {
 		- This enables modifications to struct fields and avoids unnecessary copying, which is
 		  especially beneficial when dealing with large structs.
 
+		### Implicit Dereferencing:
+		- Go automatically dereferences pointers when accessing their fields or calling methods.
+		- For example, if `teddy` is a pointer, both `(*teddy).color` and `teddy.color` are valid ways to access the `color` field.
+		- This shorthand (implicit dereferencing) helps avoid verbose code.
+
 		### Benefits of Using Pointers in Go:
 		✅ Modify values indirectly by passing references instead of copying data.
 		✅ Efficient memory usage, reducing overhead when dealing with large structs.
@@ -789,15 +794,31 @@ func main() {
 		✅ Support shared state, where multiple functions can operate on the same data.
 
 		### Limitations of Pointers in Go:
-		❌ Dereferencing a nil pointer causes a runtime panic.
+		❌ Dereferencing a `nil` pointer causes a runtime panic.
 		❌ No pointer arithmetic, unlike C/C++, preventing manual memory manipulation.
 		❌ No manual memory allocation (`malloc/free`); Go uses garbage collection.
-		❌ Must explicitly dereference (`*ptr`) to access a pointer's stored value.
+		❌ Must explicitly dereference (`*ptr`) to access a pointer's stored value when working with the pointer itself.
 
-		Go's pointer system provides safety and simplicity while ensuring memory efficiency,
-		but it enforces strict rules to avoid common memory-related bugs.
+		### Summary of Pointer Behavior:
+		- Go automatically dereferences pointers for field access and method calls (implicit dereferencing).
+		- This simplifies working with pointers but still requires explicit dereferencing when performing pointer-based operations.
+		- The safety and simplicity of Go’s pointer system help prevent common memory-related bugs, while providing efficient memory usage and the ability to modify data.
+
+		Go's pointer system provides safety and simplicity while ensuring memory efficiency, but it enforces strict rules to avoid common memory-related bugs.
 	*/
 
+	var teddy teddy_t = teddy_t{"white", 100}
+	teddy.setColor("blue")
+	fmt.Println(teddy.color)
+}
+
+type teddy_t struct {
+	color  string
+	volume int
+}
+
+func (teddy *teddy_t) setColor(color string) {
+	teddy.color = color // same as (*teddy).color due to implicit pointer dereferencing
 }
 
 func add(a, b int) int {
