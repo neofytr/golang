@@ -761,6 +761,16 @@ func main() {
 	fmt.Println(doubleFunc(12))
 
 	processFile("example.txt")
+
+	firstIncrement := counter() // returns a closure
+	fmt.Println(firstIncrement())
+	fmt.Println(firstIncrement())
+	fmt.Println(firstIncrement())
+
+	secondIncrement := counter() // returns another closure capturing a different copy of count
+	fmt.Println(secondIncrement())
+	fmt.Println(secondIncrement())
+	fmt.Println(secondIncrement())
 }
 
 func add(a, b int) int {
@@ -784,6 +794,20 @@ is transformed into a sequence of functions, each taking a single argument
 func selfMath(mathFunc func(int, int) int) func(int) int {
 	return func(x int) int {
 		return mathFunc(x, x)
+	}
+}
+
+/*
+A closure is an anonymous function that captures and retains access to variables
+from it's surrounding scope, even after the surrounding function has returned
+*/
+func counter() func() int {
+	// counter returns a function func() int
+	// the returned function captures count, even though counter has returned
+	count := 0 // captured variable
+	return func() int {
+		count++ // modifies the captured variable
+		return count
 	}
 }
 
