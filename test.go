@@ -759,6 +759,8 @@ func main() {
 
 	doubleFunc := selfMath(add)
 	fmt.Println(doubleFunc(12))
+
+	processFile("example.txt")
 }
 
 func add(a, b int) int {
@@ -810,6 +812,10 @@ func processFile(filename string) (success bool) {
 	// when a function panics, deferred calls still execute before the program crashes
 	// if a function returns named return value, deferred functions can modify it
 
+	// if a function returns in between, only the defers registered till that point
+	// will execute for that return
+
+	success = false
 	defer func() {
 		if !success {
 			fmt.Println("Processing Failed, Cleaning Up")
@@ -819,7 +825,7 @@ func processFile(filename string) (success bool) {
 	file, err := os.Open(filename)
 	if err != nil {
 		fmt.Println("Error Opening File: ", err)
-		return false
+		return success
 	}
 
 	defer func() {
@@ -828,10 +834,16 @@ func processFile(filename string) (success bool) {
 	}()
 
 	// lock a mutex for safe access to shared resources
-	
+
 	mu.Lock()
 	defer func() {
 		fmt.Println("Releasing mutex lock")
 		mu.Unlock()
-	}
+	}()
+
+	fmt.Println("Processing file")
+
+	// some processing
+	success = true
+	return success
 }
