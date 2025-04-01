@@ -829,4 +829,9 @@ func processFile(filename string) (success bool) {
 
 	// lock a mutex for safe access to shared resources
 	
+	mu.Lock()
+	defer func() {
+		fmt.Println("Releasing mutex lock")
+		mu.Unlock()
+	}
 }
